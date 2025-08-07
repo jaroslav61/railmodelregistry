@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RailModelRegistry</title>
+
+    <!-- Načítanie externých knižníc a štýlov -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Načítanie Reactu a Babelu -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <!-- Firebase v8 SDKs - VŠETKY Firebase SDK najprv -->
+    <!-- Firebase v9 compat SDKs - VŠETKY Firebase SDK najprv -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-functions-compat.js"></script>
+    
+    <!-- Kontrola globálneho objektu Firebase po načítaní všetkých compat SDK -->
+    <script>
+        console.log("Firebase objekt po načítaní všetkých compat SDK:", firebase);
+        if (typeof firebase !== 'undefined' && typeof firebase.functions === 'function') {
+            console.log("firebase.functions je funkcia. Modul Functions bol úspešne načítaný.");
+        } else {
+            console.error("firebase.functions NIE JE funkcia. Modul Functions sa nenačítal správne.");
+        }
+    </script>
+
+    <!-- firebase-init.js AŽ POTOM, čo sú všetky Firebase compat SDK načítané -->
+    <script type="text/babel" src="firebase-init.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Načítanie tvojich React komponentov -->
+    <!-- Poradie je dôležité - od najmenších po hlavný App -->
+    <script type="text/babel" src="./components/LabeledInput.js"></script>
+    <script type="text/babel" src="./components/LabeledCheckbox.js"></script>
+    <script type="text/babel" src="./components/AxleVisualization.js"></script>
+    <script type="text/babel" src="./components/SignalVisualization.js"></script>
+    <script type="text/babel" src="./components/MessageModal.jsx"></script>
+    <script type="text/babel" src="./components/ModelListGrid.js"></script>
+    <script type="text/babel" src="./components/ModelListTable.js"></script>
+    <script type="text/babel" src="./components/AuthModal.js"></script>
+    <script type="text/babel" src="./components/Header.js"></script>
+    <script type="text/babel" src="./components/Sidebar.js"></script>
+    <script type="text/babel" src="./components/HomePage.js"></script>
+    <script type="text/babel" src="./components/LokomotivaForm.js"></script>
+    <script type="text/babel" src="./components/VagonForm.js"></script>
+    <script type="text/babel" src="./components/PrislusenstvoForm.jsx"></script>
+    <script type="text/babel" src="./components/ReferenceDataManager.js"></script>
+    <script type="text/babel" src="./components/CiselniciPage.js"></script>
+    <script type="text/babel" src="./components/PrintPage.js"></script>
+    <script type="text/babel" src="./components/SettingsPage.js"></script>
+    <script type="text/babel" src="./components/UserManagement.js"></script>
+    <script type="text/babel" src="./components/ModelsPage.js"></script>
+
+    <!-- Hlavný súbor aplikácie, ktorý všetko spojí -->
+    <script type="text/babel" src="App.jsx"></script>
+
+    <!-- Vykreslenie React aplikácie do DOM -->
+    <script type="text/babel">
+        // Po načítaní všetkých komponentov a Babelu, vykreslíme hlavný App komponent
+        // do elementu s id="root".
+        ReactDOM.render(
+            React.createElement(App), // Vytvorenie React elementu z komponentu App
+            document.getElementById('root') // Cieľový DOM element
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Pravidlá pre verejné dáta (číselníky)
+    // Tieto dáta sú určené na čítanie pre všetkých, ale zápis je obmedzený len na administrátorov.
+    match /artifacts/{appId}/public/data/referenceData {
+      allow read: if true; // Čítať môžu všetci (aj neautentifikovaní)
+      allow write: if request.auth != null && request.auth.token.admin == true; // Zapisovať môžu len prihlásení administrátori
+    }
+
+    // Pravidlá pre podkolekcie verejných dát (napr. konkrétne kategórie číselníkov)
+    match /artifacts/{appId}/public/data/referenceData/{categoryId} {
+      allow read: if true; // Čítať môžu všetci (aj neautentifikovaní)
+      allow write: if request.auth != null && request.auth.token.admin == true; // Zapisovať môžu len prihlásení administrátori
+    }
+
+    // Pravidlá pre dáta konkrétneho používateľa
+    // Používateľ môže čítať a zapisovať len svoje vlastné dáta.
+    // Administrátori môžu čítať a zapisovať dáta všetkých používateľov.
+    match /artifacts/{appId}/users/{userId} {
+      // Čítanie: Ak je používateľ prihlásený A (je to jeho vlastné UID ALEBO je administrátor)
+      allow read: if request.auth != null && (request.auth.uid == userId || request.auth.token.admin == true);
+      // Zápis: Ak je používateľ prihlásený A (je to jeho vlastné UID ALEBO je administrátor)
+      allow write: if request.auth != null && (request.auth.uid == userId || request.auth.token.admin == true);
+    }
+
+    // Pravidlá pre všetky podkolekcie používateľa (napr. /users/{userId}/myModels/{modelId})
+    // Rovnaké pravidlá ako pre samotný používateľský dokument.
+    match /artifacts/{appId}/users/{userId}/{collection=**} {
+      // Čítanie: Ak je používateľ prihlásený A (je to jeho vlastné UID ALEBO je administrátor)
+      allow read: if request.auth != null && (request.auth.uid == userId || request.auth.token.admin == true);
+      // Zápis: Ak je používateľ prihlásený A (je to jeho vlastné UID ALEBO je administrátor)
+      allow write: if request.auth != null && (request.auth.uid == userId || request.auth.token.admin == true);
+    }
+  }
+}

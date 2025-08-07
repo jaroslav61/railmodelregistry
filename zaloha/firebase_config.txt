@@ -1,0 +1,21 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAqIOEs-5bnew7vnbdKrPmwm2lT8p7pGn8",
+  authDomain: "railmodelregistryapp.firebaseapp.com",
+  projectId: "railmodelregistryapp",
+  storageBucket: "railmodelregistryapp.firebasestorage.app",
+  messagingSenderId: "33435632655",
+  appId: "1:33435632655:web:50fdb8969d453161bd4f7a",
+  measurementId: "G-7LBME69PBM"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

@@ -1,0 +1,16 @@
+# Ignorovať node_modules
+node_modules/
+functions/node_modules/
+
+# Ignorovať konfigurácie a súkromné údaje
+.env
+functions/.env
+
+# Ignorovať buildy
+dist/
+build/
+
+# Ignorovať systémové súbory
+.DS_Store
+Thumbs.db
+personal_token_git.txt
