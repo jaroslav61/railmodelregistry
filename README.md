@@ -1,4 +1,3 @@
-powershell -Command "@'
 # RailModelRegistry
 
 Aplikácia na evidenciu modelov železníc s Firebase (Auth, Firestore, Storage).
@@ -23,4 +22,4 @@ Aplikácia na evidenciu modelov železníc s Firebase (Auth, Firestore, Storage)
 
 ## Firestore rules
 Pozri `firestore.rules`.
-'@ | Set-Content -Encoding utf8 README.md"
+

@@ -1,1 +1,22 @@
-powershell -Command "Set-Content -Encoding utf8 .gitattributes '* text=auto'"
+# Nastavenia pre Git textové súbory
+* text=auto
+
+# JavaScript, JSX a JSON súbory – LF konce riadkov
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+
+# CSS a HTML
+*.css text eol=lf
+*.html text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# Ignorovať binárne súbory pri diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
